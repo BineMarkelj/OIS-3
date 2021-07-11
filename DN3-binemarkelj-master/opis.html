@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3. DN :: OIS 2019/2020</title>
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {padding-top: 70px;}
+  </style>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+</head>
+<body>
+
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html" style="color: #32CD32">CORONA-CHAN</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html">Opis ideje</a></li>
+          <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
+          <li><a href="bolnisnice.html">Bližnje bolnišnice</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Opis delovanja aplikacije -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Opis ideje, ki jo aplikacija podpira</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Opis ideje, ki jo aplikacija podpira -->
+            <p>Glavni namen aplikacije je obveščanje in informiranje ljudi v zvezi s koronavirusom (COVID-19). Aplikacija je namenjena vsem ljudem, ki želijo aktivno slediti samemu širjenju Koronavirusa na državni ter svetovni ravni in omogoča boljši pogled na širjenje virusa, ter njegov vpliv na ljudi v tem času. Aplikacija je uporabna tudi za informiranje ljudi o nekaterih možnih pokazateljih koronavirusa, hkrati pa s pomočjo vzorčnih primerov pokaže, da ni čisto vsak simptom nujno pokazatelj okužbe (pacient ima npr. gripo, kronična obolenja, ki lahko glede na simptome spominjajo na koronavirus) in s tem omejuje ter preprečuje nepotrebno širjenje panike med ljudmi. Uporabnik ima na preglednem grafu možnost pogledati razliko med vitalnimi znaki povprečne odrasle osebe, ki je zdrava in povprečne osebe, ki ima koronavirus, ter se le tako lahko vmesti na spekter. Prav tako pa aplikacija omogoča pregled vseh bolnišnic in zdravstvenih ustanov v Sloveniji. Ob kliku na zemljevid se z rumeno barvo obarvajo vse zdravstvene ustanove v radiju 5ih kilometrov in tako omogoča hiter pregled ter ukrepanje v primeru potrebe po obisku zdravnika. Ob kliku na ustanovo pa se pokaže oblaček z najpomembnejšimi podatki o bolnišnici.</p>
+            <!-- KONEC: Opis ideje, ki jo aplikacija podpira -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Uporabljeni zunanji viri podatkov</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
+            <p>https://teaching.lavbic.net/api/OIS/baza/BineMarkelj/podatki/ - neposredni API klic, uporabljen za shranjevanje in pridobivanje podatkov o pacientih iz podatkovne baze.
+https://api.thevirustracker.com/free-api?countryTotal=SI in https://api.thevirustracker.com/free-api?global=stats – oba sta neposredna API klica, 1. za pridobivanje podatkov o širjenju koronavirusa ter vplivu na ljudi v Sloveniji, 2. pa za pridobivanje podatkov o širjenju koronavirusa ter vplivu na ljudi globalno (cel svet). Ubistvu pa oba izhajata iz iste strani: https://thevirustracker.com/ </p>
+            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Master/detail načrtovalski vzorec</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Master/detail načrtovalski vzorec -->
+            <p>DVAKRAT OB PRITISKU GUMBA: V dropdown meniju/z ročnim vnosom ERH-IDja si uporabnik izbere pacienta, katerega podatke o zdravstvenem stanju in meritvah bi rad videl. Prikaz tega pacienta se ob pritisku gumba »prikaži pacienta« prikaže na desni strani po alinejah. In pa bo pritisku na gump »pridobi najnovejše podatke« se izpišejo v za to predvideno mesto najnovejši podatki o širjenju koronavirusa v Sloveniji in po svetu.</p>
+            <!-- KONEC: Master/detail načrtovalski vzorec -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Uporabljena tehnika za vizualizacijo podatkov</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
+            <p>Za prikaz razlike v vitalnih znakih zdrave in obolele povprečne osebe sem izbral način grafa, ki po mojem mnenju zelo lepo in nazorno prikaže razliko med dvema skupinama ljudi. Uporabil sem prikaz grafa »Graphs with Secondary Axis« iz knjižnice CanvasJS.com, ki z uporabo barv in hover funkcijo ki pove točno številko omogoča lep pregled in možnost, da uporabnik primerja podane vrednosti z lastnimi.</p>
+            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- KONEC: Opis delovanja aplikacije -->
+
+</body>
+</html>

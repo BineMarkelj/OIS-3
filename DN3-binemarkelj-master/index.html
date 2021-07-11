@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3. DN :: OIS 2019/2020</title>
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {padding-top: 70px; background-color: white
+
+;}
+  </style>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+</head>
+<body>
+
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html" style="color: #32CD32" >CORONA-CHAN</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html">Opis ideje</a></li>
+          <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
+          <li><a href="bolnisnice.html">Bližnje bolnišnice</a></li>
+          <li><a href="#" onclick="posljiPodatke()">Generiranje podatkov</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Vsebina aplikacije -->
+  <body>
+  
+  <table width = "100%">
+         <tr>
+            <td colspan = "5" bgcolor = "#32CD32">
+               <center>
+              .
+               </center>
+            </td>
+         </tr>
+         
+      </table>
+
+<div><br></div>
+	<div><br></div>
+	
+	
+	
+<table style="width: 100%;">
+<tbody>
+<tr>
+<td style="width: 89px;">&nbsp;<b style="font-size:33px">PRIJAVA</b></td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 108px;">&nbsp;<b style="font-size:33px" colspan="2">PRIKAZ PACIENTA </b></td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15.6px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 89px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 108px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15.6px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 89px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 108px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15.6px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 89px;">&nbsp;<b>PRIJAVA ŽE VPISANIH PACIENTOV</b></td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 108px;">&nbsp;<b style="text-decoration: underline; font-size:18px">Ime:</b></td>
+<td style="width: 15px;">&nbsp;<h11 id="ime"></h11></td>
+<td style="width: 15px;">&nbsp;<b style="text-decoration: underline; font-size:18px">Teža:</b></td>
+<td style="width: 15.6px;">&nbsp;<h11 id="teža"></h11></td>
+</tr>
+<tr>
+<td style="width: 89px;">&nbsp;<select id="vpisani">
+									<option value="">izberite enega izmed že vpisanih EhrIDjev</option>
+									<option id="skrito1" hidden value="11111111-1111-4111-y111-111111111111" >Viljem Nemški</option>
+									<option id="skrito2" hidden value="33333333-3333-4333-y333-333333333333">Marija Terezija</option>
+									<option id="skrito3" hidden value="55555555-5555-4555-y555-555555555555">Franc Jožef</option>
+								</select></td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 108px;">&nbsp;<b style="text-decoration: underline; font-size:18px">Priimek:</b></td>
+<td style="width: 15px;">&nbsp;<h11 id="priimek"></h11></td>
+<td style="width: 15px;"><b style="text-decoration: underline; font-size:18px">Tlak:</b>&nbsp;</td>
+<td style="width: 15.6px;">&nbsp;<h11 id="tlak"></h11></td>
+</tr>
+<tr>
+<td style="width: 89px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 108px;">&nbsp;<b style="text-decoration: underline; font-size:18px">Starost:</b></td>
+<td style="width: 15px;">&nbsp;<h11 id="starost"></h11></td>
+<td style="width: 15px;"><b style="text-decoration: underline; font-size:18px">Zdravsteveno stanje:</b>&nbsp;</td>
+<td style="width: 15.6px;">&nbsp;<h11 id="stanje"></h11></td>
+</tr>
+<tr>
+<td style="width: 89px;">&nbsp;<b>PRIJAVA PACIENTOV Z EHR-ID</b></td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 108px;">&nbsp;<b style="text-decoration: underline; font-size:18px">Spol:</b></td>
+<td style="width: 15px;">&nbsp;<h11 id="spol"></h11></td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15.6px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 89px;">&nbsp;<input id="ročnovnešeni" size="35"  type="text"  placeholder="Sem vnesite EhrID">
+						<span ></span></td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 108px;">&nbsp;<b style="text-decoration: underline; font-size:18px">Višina:</b></td>
+<td style="width: 15px;">&nbsp;<h11 id="višina"></h11></td>
+<td style="width: 15px;">&nbsp;</td>
+<td style="width: 15.6px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+	
+
+	
+	<div><br></div>
+	<div><button type="button" onclick="pridobiPodatke()" id="" style="color: red; margin-left: 85px"><b>Prikaži pacienta</b></button></div>
+       
+
+
+<div><br></div>
+<div><br></div>
+  <div><br></div>
+<div><br></div>
+
+  <table width = "100%">
+         <tr>
+            <td colspan = "5" bgcolor = "#32CD32">
+               <center>
+              .
+               </center>
+            </td>
+         </tr>
+         
+      </table>
+  <div><br></div>
+<div><br></div>
+  
+
+  
+  <!DOCTYPE html>
+<html>
+<head>
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	exportEnabled: true,
+	animationEnabled: true,
+	title:{
+		text: "PRIMERJAVA SIMPTOMOV PACIENTA OKUŽENEGA S COVID-19 IN ZDRAVEGA PACIENTA"
+	},
+	subtitles: [{
+		text: ""
+	}], 
+	axisX: {
+		title: "SIMPTOMI"
+	},
+	axisY: {
+		title: "",
+		titleFontColor: "#4F81BC",
+		lineColor: "#4F81BC",
+		labelFontColor: "#4F81BC",
+		tickColor: "#4F81BC"
+	},
+	axisY2: {
+		title: "",
+		titleFontColor: "#C0504E",
+		lineColor: "#C0504E",
+		labelFontColor: "#C0504E",
+		tickColor: "#C0504E"
+	},
+	toolTip: {
+		shared: false
+	},
+	legend: {
+		cursor: "pointer",
+		itemclick: toggleDataSeries
+	},
+	data: [{
+		type: "column",
+		name: "Vitalni znaki povprečne zdrave osebe",
+		showInLegend: true,      
+		yValueFormatString: "#,##0.# Units",
+		dataPoints: [
+			{ label: "Sistolični krvni tlak (mmHg)",  y: 120 },
+			{ label: "Diastolični krvni tlak (mmHg)",  y: 80 },
+			{ label: "Telesna temperatura (°C)", y: 36.7 },
+			{ label: "Nasičenost krvi s kisikom (%) ", y: 93 },
+			{ label: "Srčni utrip ( /minuto)",  y: 70},
+			
+		]
+	},
+	{
+		type: "column",
+		name: "Vitalni znaki povprečne osebe obolele za covid-19",
+		axisYType: "secondary",
+		showInLegend: true,
+		yValueFormatString: "#,##0.# Units",
+		dataPoints: [
+			{ label: "Sistolični krvni tlak (mmHg)", y: 139 },
+			{ label: "Diastolični krvni tlak (mmHg)", y: 88 },
+			{ label: "Telesna temperatura (°C)", y: 38.5 },
+			{ label: "Nasičenost krvi s kisikom (%)", y: 81 },
+			{ label: "Srčni utrip ( /minuto)", y: 88},
+			
+		]
+	}]
+});
+chart.render();
+
+function toggleDataSeries(e) {
+	if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	} else {
+		e.dataSeries.visible = true;
+	}
+	e.chart.render();
+}
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
+
+<div><br></div>
+<div><br></div>
+
+ <table width = "100%">
+         <tr>
+            <td colspan = "5" bgcolor = "#32CD32">
+               <center>
+              .
+               </center>
+            </td>
+         </tr>
+         
+      </table>
+
+<div><br></div>
+<div><br></div>
+
+
+
+<div class="container">
+    <div class="row center">
+      <div class="col-lg-12 center">
+      <table>
+      	<tr>
+      		<td style="text-align:center; font-size:33px"><b>RAZŠIRJENOST COVID-19</b></td>
+      	</tr>
+      		<tr>
+      		<td style="text-align:center"><BR></td>
+      	</tr>
+      	<tr>
+      		<td style="text-decoration: underline; font-size:18px"><b>SLOVENIJA:</b></td>
+      		<td style="text-decoration: underline; font-size:18px"><b>SVET:</b></td>
+      	</tr>
+      		<tr>
+      		<td><h4>Novi primeri:</h4>
+			<h1 id="noviSlo"></h1></td>
+      		<td><h4>Novi primeri</h4>
+			<h1 id="noviAll"></h1></td>
+      	</tr>
+      		<tr>
+      		<td><h4>Primeri:</h4>
+			<h1 id="primeriSlo"></h1></td>
+      		<td><h4>Primeri</h4>
+			<h1 id="primeriAll"></h1></td>
+      	</tr>
+      		<tr>
+      		<td><h4>Smrtne žrtve:</h4>
+			<h1 id="smrtiSlo"></h1></td>
+      		<td><h4>Smrtne žrtve:</h4>
+			<h1 id="smrtiAll"></h1></td>
+      	</tr>
+      	<tr>
+      		<td><h4>Ozdraveli:</h4>
+			<h1 id="zdraviSlo"></h1></td>
+      		<td><h4>Ozdraveli:</h4>
+			<h1 id="zdraviAll"></h1></td>
+      	</tr>
+      		<tr>
+      		<td><button type="button" id="" onclick="koronatracker()"  style="color: red; margin-left:85px"><b>Pridobi najnovejše podatke</b></button></tr></td>
+
+      	</tr>
+      </table>
+	</div>
+    </div>
+  </div>
+  
+      
+      
+      
+      <style>.center {
+  margin: auto;
+  width: 400px;
+  padding: 10px;
+}
+h11 {
+  color: black;
+  text-align: left;
+  font-size: 5;
+}
+
+
+</style>
+
+
+
+
+
+</section>                                                                              
+         
+  <!-- KONEC: Vsebina aplikacije -->
+
+
+      
+</body>
+</html>

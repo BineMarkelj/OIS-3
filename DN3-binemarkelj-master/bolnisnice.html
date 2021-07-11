@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3. DN :: OIS 2019/2020</title>
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <link href="knjiznice/css/leaflet.css" rel="stylesheet">
+  <link href="knjiznice/css/leaflet-routing-machine.css" rel="stylesheet">
+  
+  <style>
+    body {padding-top: 70px;
+          
+    }
+    
+  </style>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/leaflet.js"></script>
+  <script src="knjiznice/js/leaflet-routing-machine.js"></script>
+  <script src="knjiznice/js/distance-util.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+  <script src="knjiznice/json/bolnisnice.json"></script>
+</head>
+<body>
+
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html" style="color: #32CD32">CORONA-CHAN</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html">Opis ideje</a></li>
+          <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
+          <li><a href="bolnisnice.html">Bližnje bolnišnice</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Prikaz bližnjih bolnišnic -->
+  <table width = "100%">
+         <tr>
+            <td colspan = "5" bgcolor = "#32CD32
+">
+               <center>
+              .
+               </center>
+            </td>
+         </tr>
+         
+      </table>
+      
+      <br><br>
+  
+  <div class="container" >
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p class="lead"><b style="font-size:33px" colspan="2">PRIKAZ BOLNIŠNIC IN ZDRAVSTVENIH USTANOV</b>:</p>
+      </div>
+    </div>
+  </div>
+  <!-- KONEC: Prikaz bližnjih bolnišnic -->
+
+ <br><br>
+ 
+  
+    <zemljevid id="mapid"></zemljevid>
+    <table width = "100%">
+         <tr>
+            <td colspan = "5" bgcolor = "#32CD32">
+               <center>
+              .
+               </center>
+            </td>
+         </tr>
+         
+      </table>
+  
+  
+  <style>
+    #mapaid {
+      height: 777px;
+      width: 1460px;
+    }
+    
+    zemljevid {
+      height: 777px;
+      width: 1460px;
+      margin: auto;
+      overflow: visible;
+      display: inline-block;
+       position: absolute;
+
+    }
+  </style>
+  
+  
+  
+  <script>
+    //naredimo zemljevid
+    const mymap = L.map('mapid').on('load', onMapLoad).setView([46.05, 14.51], 8);
+    
+    const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+    
+    //dodajanje bolnišnic
+    var layer1 = undefined;
+    var radij = 5;
+    
+    function onMapLoad(){
+    $.getJSON("knjiznice/json/bolnisnice.json", function(data){
+  //      console.log(data.features);
+      
+        
+        layer1 = L.geoJSON(data, {
+        style: function (feature) {
+       
+        
+         //
+         
+          if (feature.properties.emergency =="yes") {
+            return{color: "green"};
+          } else {
+            return{color: "blue"};
+          }
+      }}).addTo(mymap).bindPopup(function (popup){
+          
+          
+        //  polygon.setStyle({fillColor: 'red'});
+
+          
+          if (popup.feature.geometry.type == "point") {
+           console.log ("ojoj");
+         } else {
+           console.log ("dobro");
+         }
+          
+          var ime = popup.feature.properties.name;
+          if (popup.feature.properties.name == undefined) {
+            ime = "Zdravstvena ustanova"
+          }
+          
+          var namen = popup.feature.properties.amenity;
+          if (namen == undefined) {
+            namen = "Zdravstvo";
+          }
+            
+          var naslov1 = popup.feature.properties["addr:city"];
+          if (naslov1 == undefined) {
+            naslov1 = "Slovenija";
+          }
+          
+          var naslov2 = popup.feature.properties["addr:street"];
+          if (naslov2 == undefined) {
+            naslov2 = "Neznan naslov";
+          }
+          
+          var naslov3 = popup.feature.properties["addr:housenumber"];
+          if (naslov3 == undefined) {
+            naslov3 = "";
+          }
+          
+        
+          
+          var obvestilo1 = ime +  " <br> " + namen.toUpperCase() + " <img src=bolnica.png alt=bolnica height=42 width=60 style=horizontal-align:middle>" + "<br>" + naslov1 + ", " + naslov2 +" "+ naslov3;
+          return obvestilo1;
+        }).addTo(mymap);
+        
+         
+        
+        
+      });
+    }
+     
+     /////////////////////////////////////////////////////////////////////////
+     
+     
+     mymap.on('click', onClick);
+        function onClick(e) {
+       
+        if (layer1 != undefined) {
+        mymap.removeLayer(layer1) 
+        }
+     
+     $.getJSON("knjiznice/json/bolnisnice.json", function(data){
+        console.log(data.features);
+      
+      
+        layer1 = L.geoJSON(data, {
+        style: function (feature) {
+          
+       
+          if (feature.properties.emergency =="yes") {
+            return{color: "green"};
+          } else if (feature.geometry.coordinates[0][0] != undefined){
+            
+            var trenutnaLat = e.latlng.lat;
+            var trenutnaLng = e.latlng.lng;
+            
+            var bolnicaLatLng = feature.geometry.coordinates[0][0];
+            var bolnicaLat = bolnicaLatLng[1];
+            var bolnicaLng = bolnicaLatLng[0];
+            
+            if (distance(trenutnaLat, trenutnaLng, bolnicaLat, bolnicaLng, "K") <= radij) {
+              return{color: "yellow"};
+              
+            } else {
+              return{color: "blue"};
+            }
+          } else {
+            return{color: "blue"};
+          }
+        
+        //console.log(feature.geometry.coordinates[0][0][0]);
+      
+         
+         //ob kluku pridobi lat in lng točke na zemljevidu 
+         //var trenutnaLat;
+         //var trenutnaLng;
+         
+        
+           //console.log(trenutnaLat +", "+trenutnaLng);
+        /*
+        var trenutnaLat = e.latlng.lat;
+        var trenutnaLng = e.latlng.lat;
+        console.log(trenutnaLat +", "+trenutnaLng);
+        
+         //preveri katere bolnice so v radiju
+         if (feature.geometry.coordinates[0][0] != undefined) {
+          var bolnicaLatLng = feature.geometry.coordinates[0][0];
+          //console.log(bolnicaLatLng);
+          var bolnicaLat = bolnicaLatLng[1];
+          var bolnicaLng = bolnicaLatLng[0];
+          console.log(bolnicaLat + " " + bolnicaLng);
+        //    if ((distance(trenutnaLat, trenutnaLng, bolnicaLat, bolnicaLng, "K") <= 5000) && feature.properties.emergency != "yess") {
+        //     return {color: "yellow"};
+            }
+       // } */
+        
+         //
+         
+      }}).addTo(mymap).bindPopup(function (popup){
+          
+          
+        //  polygon.setStyle({fillColor: 'red'});
+
+          
+          if (popup.feature.geometry.type == "point") {
+           console.log ("ojoj");
+         } else {
+           console.log ("dobro");
+         }
+          
+          var ime = popup.feature.properties.name;
+          if (popup.feature.properties.name == undefined) {
+            ime = "Zdravstvena ustanova";
+          }
+          
+          var namen = popup.feature.properties.amenity;
+          if (namen == undefined) {
+            namen = "Zdravstvo";
+          }
+            
+          var naslov1 = popup.feature.properties["addr:city"];
+          if (naslov1 == undefined) {
+            naslov1 = "Slovenija";
+          }
+          
+          var naslov2 = popup.feature.properties["addr:street"];
+          if (naslov2 == undefined) {
+            naslov2 = "Neznan naslov";
+          }
+          
+          var naslov3 = popup.feature.properties["addr:housenumber"];
+          if (naslov3 == undefined) {
+            naslov3 = "";
+          }
+          
+        
+          
+          var obvestilo1 = ime +  " <br> " + namen.toUpperCase() + " <img src=bolnica.png alt=bolnica height=42 width=60 style=horizontal-align:middle>" + "<br>" + naslov1 + ", " + naslov2 +" "+ naslov3;
+          return obvestilo1;
+        }).addTo(mymap);
+     
+        });
+     
+    }     
+
+      
+      
+      
+    
+    
+    //prikaz radija z krogom
+    
+     
+     
+      
+  
+   
+      
+  </script>
+
+</body>
+</html>
